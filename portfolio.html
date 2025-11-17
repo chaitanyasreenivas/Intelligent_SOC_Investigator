@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaitanya's Portfolio | AI-Powered SOAR</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <style>
+        :root {
+            --color-primary: #007AFF; /* Apple Blue */
+            --color-secondary: #20c997; /* Teal */
+            --color-bg-light: #ffffff; /* PURE WHITE background */
+            --color-bg-alt: #f8f9fa; /* Light grey for contrast */
+            --color-text-dark: #212529;
+            --color-text-muted: #555;
+            --color-border: #eaeaea; /* Lighter border */
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.07);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
+            --border-radius: 16px;
+        }
+
+        /* --- Base & Typography --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* --- Scroll Progress Bar --- */
+        #scroll-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            width: 0%;
+            z-index: 1001;
+            transition: width 0.1s linear;
+        }
+
+        /* --- Navigation Bar (Sticky & Frosted) --- */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            padding: 16px 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .nav-brand {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 24px, 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            font-weight: 600;
+            transition: color 0.2s;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--color-primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- Hero Section (Vibrant Gradient) --- */
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+            color: white;
+            background: linear-gradient(-45deg, var(--color-primary), var(--color-secondary), #0d6efd, #6f42c1);
+            background-size: 400% 400%;
+            animation: moveGradient 15s ease infinite;
+        }
+        
+        @keyframes moveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin: 0 0 16px 0;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 32px auto;
+            opacity: 0.9;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .btn-light {
+            background-color: var(--color-bg-white);
+            color: var(--color-primary);
+        }
+        .btn-light:hover {
+            background-color: #f1f1f1;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- In-Depth Project Description --- */
+        .project-intro {
+            background: var(--color-bg-white);
+            padding: 80px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .intro-grid h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            line-height: 1.3;
+            margin-top: 0;
+        }
+        .intro-grid p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .intro-grid strong {
+            color: var(--color-text-dark);
+            font-weight: 600;
+        }
+        .intro-grid .problem { border-right: 1px solid var(--color-border); padding-right: 48px; }
+
+        /* --- Section Titles --- */
+        .section-title {
+            text-align: center;
+            padding: 100px 0 60px 0;
+        }
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0 0 16px 0;
+        }
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            max-width: 700px;
+            margin: 16px auto 0 auto;
+        }
+
+        /* --- Animated Stats Bar --- */
+        .stats-bar {
+            background: var(--color-bg-alt);
+            border-radius: var(--border-radius);
+            margin: 0 auto 80px auto;
+            padding: 32px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            border: 1px solid var(--color-border);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .stats-bar.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stat-item {
+            text-align: center;
+            border-right: 1px solid var(--color-border);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0 0 8px 0;
+        }
+        .stat-item p {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+
+        /* --- NEW: Updated 3-Column Feature Grid --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 24px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: var(--color-bg-white);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .feature-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+        .feature-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered animation delays */
+        .feature-card.is-visible:nth-child(1) { transition-delay: 0s; }
+        .feature-card.is-visible:nth-child(2) { transition-delay: 0.1s; }
+        .feature-card.is-visible:nth-child(3) { transition-delay: 0.2s; }
+        .feature-card.is-visible:nth-child(4) { transition-delay: 0s; }
+        .feature-card.is-visible:nth-child(5) { transition-delay: 0.1s; }
+        .feature-card.is-visible:nth-child(6) { transition-delay: 0.2s; }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            color: var(--color-text-dark);
+        }
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--color-text-muted);
+            flex-grow: 1; /* Makes cards in a row equal height */
+        }
+        .feature-card img {
+            width: 100%;
+            height: 220px; /* Uniform image height */
+            object-fit: cover; /* Prevents stretching */
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid var(--color-border);
+        }
+
+        /* --- Parallax Gallery Section --- */
+        .parallax-section {
+            background-image: url('Results/KILLCHAIN_GRAPGH.png');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            padding: 120px 0;
+            margin-top: 80px;
+        }
+        .parallax-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+        .parallax-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+        .parallax-content p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* --- Architecture Section --- */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .arch-card {
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .arch-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .arch-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .arch-card h3 ion-icon {
+            font-size: 1.5rem;
+        }
+        .arch-card ul { list-style: none; padding: 0; margin: 0; }
+        .arch-card li {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+        }
+        .arch-card li strong {
+            color: var(--color-text-dark);
+            font-weight: 600;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            background: var(--color-bg-alt); /* Light grey footer */
+            border-top: 1px solid var(--color-border);
+            margin-top: 80px;
+            color: var(--color-text-muted);
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+        .footer-links a ion-icon {
+            font-size: 1.4em;
+        }
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .intro-grid, .feature-grid, .architecture-grid { grid-template-columns: 1fr; }
+            .stats-bar { grid-template-columns: 1fr 1fr; }
+            .stat-item:nth-child(2) { border-right: none; }
+            .intro-grid .problem { border-right: none; padding-right: 0; }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-title h2 { font-size: 2.2rem; }
+            .stats-bar { grid-template-columns: 1fr; }
+            .stat-item { border-right: none; border-bottom: 1px solid var(--color-border); padding-bottom: 20px; }
+            .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            .header-content h1 { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress-bar"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-brand">AI-Powered SOAR</a>
+            <ul class="nav-links">
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Automate. Analyze. Act.</h1>
+            <p>
+                In cybersecurity, response time is everything. This project is a production-grade SOAR platform designed to 
+                <strong>eliminate alert fatigue</strong> and <strong>automate manual investigation</strong>. 
+                It transforms thousands of raw, noisy logs into a single, clear, actionable report, 
+                acting as a force multiplier for any security team.
+            </p>
+            <a href="#problem" class="btn btn-light">Learn More</a>
+        </div>
+    </header>
+
+    <main>
+        
+        <section id="problem" class="project-intro">
+            <div class="container intro-grid">
+                <div class="problem">
+                    <h2>The Problem: Analyst Burnout</h2>
+                    <p>
+                        In a modern Security Operations Center (SOC), analysts face thousands of alerts per day. 
+                        The vast majority of these are "noise" (false positives).
+                    </p>
+                    <p>
+                        Analysts spend <strong>80% of their time on manual, repetitive tasks:</strong> 
+                        correlating logs by hand, toggling between 10+ different tools, running simple IP lookups, 
+                        and trying to piece together the story of an attack. Critical, complex threats get missed in the noise, leading to 
+                        high stress, analyst burnout, and ultimately, damaging security breaches.
+                    </p>
+                </div>
+                <div class="solution">
+                    <h2>The Solution: An AI Force-Multiplier</h2>
+                    <p>
+                        This platform acts as a <strong>"force-multiplier"</strong> for the security team. It automates 
+                        the entire investigation workflow, acting as a 24/7 Tier 2 Analyst.
+                    </p>
+                    <p>
+                        It automatically ingests raw alerts, enriches them with external threat intelligence, 
+                        runs an AI analysis to determine the risk, and provides the human analyst with a 
+                        complete, visualized report—all before they've even begun their manual investigation.
+                        <strong>It reduces the Mean Time to Respond (MTTR) from hours to seconds.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container fade-in">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="90">0</h3>
+                    <p>% Faster Response Time</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="100">0</h3>
+                    <p>% Automated Triage</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="5">0</h3>
+                    <p>Seconds to AI Analysis</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="6">0</h3>
+                    <p>Enterprise-Grade Features</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="container">
+            <div class="section-title">
+                <h2>From Data to Decision, Instantly.</h2>
+                <p>
+                    This platform's true value is its ability to function as an end-to-end workflow. 
+                    It ingests raw data, enriches it with intelligence, and provides the tools to visualize and act on the threat, 
+                    transforming the entire security operation.
+                </p>
+            </div>
+            
+            <div class="feature-grid">
+                
+                <div class="feature-card fade-in">
+                    <img src="Results/DASHBOARD.png" alt="Live Monitoring Dashboard">
+                    <div class="feature-content">
+                        <h3>Live Threat Dashboard</h3>
+                        <p>
+                            **Why it matters:** Provides a C-level "single pane of glass." Instead of an endless list, analysts see a prioritized, visual summary of the entire threat landscape. This dashboard answers "Are we under attack?" in seconds, not hours, by visualizing trends and severities.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <img src="Results/AISUMMARRY_PLAYBOOK.png" alt="AI-Generated Analysis and Playbook">
+                    <div class="feature-content">
+                        <h3>The 5-Second Investigation</h3>
+                        <p>
+                            **Why it matters:** This is the core automation engine. It **reduces Mean Time to Respond (MTTR) from hours to seconds.** It automatically correlates logs, enriches IPs, and generates a report with MITRE TTPs and a step-by-step containment playbook. This frees the human analyst to focus on strategic decision-making.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <img src="Results/SEC_COP.png" alt="Interactive AI Security Copilot Chat">
+                    <div class="feature-content">
+                        <h3>The AI Copilot: Your Expert Partner</h3>
+                        <p>
+                            **Why it matters:** This feature closes the "skills gap," empowering a Junior Analyst to perform like a Senior Investigator. By asking plain-English questions, they can hunt for complex threats in raw logs **without needing to master a difficult query language** (like Splunk SPL or KQL).
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <img src="Results/KILLCHAIN_GRAPGH.png" alt="Relationship Graph and Kill Chain Timeline">
+                    <div class="feature-content">
+                        <h3>The Story: Visualizing the Attack</h3>
+                        <p>
+                            **Why it matters:** Text logs are meaningless to a manager. This tool builds the *story* of the attack. The **Relationship Graph** instantly shows *who* attacked *what*, while the **Kill Chain Timeline** reveals the *chronological sequence* of the attack, making complex events easy for anyone to understand.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <img src="Results/ALERTRULE_COPILOT.png" alt="AI Detection Engineering">
+                    <div class="feature-content">
+                        <h3>AI Detection Engineering</h3>
+                        <p>
+                            **Why it matters:** This feature moves the platform from *response* to *prevention*. After an attack is analyzed, the AI automatically writes a **Sigma Rule** (the industry standard) to detect this *specific* technique in the future, allowing the team to instantly update their defenses.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <img src="Results/ALERT_RELATED_LOGS.png" alt="Evidence & Reporting">
+                    <div class="feature-content">
+                        <h3>Evidence & Reporting</h3>
+                        <p>
+                            **Why it matters:** Creates an auditable, C-level report. All AI findings are backed by the **raw log evidence** in one view. The entire investigation can be exported as a professional PDF report, creating a "system of record" for compliance and executive briefings.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="parallax-section">
+            <div class="parallax-overlay"></div>
+            <div class="container parallax-content">
+                <h2>Full-Stack Orchestration</h2>
+                <p>This isn't just a UI. It's a true full-stack application. The decoupled frontend communicates with a modular Python/Flask API. This architecture means it's not just a demo; it's a scalable platform ready to integrate with any log source, firewall, or enterprise tool.</p>
+            </div>
+        </section>
+
+        <section id="architecture" class="container">
+            <div class="section-title">
+                <h2>Project Architecture</h2>
+                <p>A modern, modular stack designed for high performance and scalability. The backend API handles all heavy lifting (AI, Threat Intel), while the lightweight frontend focuses on rendering dynamic, real-time visualizations.</p>
+            </div>
+            
+            <div class="architecture-grid">
+                <div class="arch-card fade-in">
+                    <h3><ion-icon name="laptop-outline"></ion-icon> Frontend (Interface)</h3>
+                    <ul>
+                        <li><strong>HTML5:</strong> Semantic structure for reports.</li>
+                        <li><strong>CSS3:</strong> Advanced styling & animations.</li>
+                        <li><strong>JavaScript (ES6+):</strong> Asynchronous API fetching.</li>
+                    </ul>
+                </div>
+                <div class="arch-card fade-in">
+                    <h3><ion-icon name="server-outline"></ion-icon> Backend (Engine)</h3>
+                    <ul>
+                        <li><strong>Python 3:</strong> Core server-side logic and analysis.</li>
+                        <li><strong>Flask:</strong> Lightweight web server & REST API endpoints.</li>
+                        <li><strong>File I/O:</strong> Simulates a live, real-time SIEM log feed.</li>
+                    </ul>
+                </div>
+                <div class="arch-card fade-in">
+                    <h3><ion-icon name="cloud-outline"></ion-icon> Integrations (Brain)</h3>
+                    <ul>
+                        <li><strong>Groq:</strong> High-speed LLM for all AI-driven analysis.</li>
+                        <li><strong>AbuseIPDB:</strong> External API for IP threat intelligence.</li>
+                        <li><strong>Chart.js & Vis.js:</strong> Dynamic data visualizations.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <ul class="footer-links">
+                <li>
+                    <a href="https://github.com/chaitanyasreenivas" target="_blank">
+                        <ion-icon name="logo-github"></ion-icon> GitHub
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/chaitanya-sreenivas/" target="_blank">
+                        <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:chaitanyasreenivas1999@gmail.com">
+                        <ion-icon name="mail-outline"></ion-icon> Email
+                    </a>
+                </li>
+            </ul>
+            <p>&copy; 2025 - Chaitanya Sreenivas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. Scroll Fade-in Animation ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% is visible
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+            
+            // --- 2. 3D Tilt Card Effect (Removed for a cleaner, brighter feel) ---
+            
+            // --- 3. Scroll Progress Bar ---
+            const progressBar = document.getElementById('scroll-progress-bar');
+            const onScroll = () => {
+                const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPosition = document.documentElement.scrollTop;
+                const scrollPercentage = (scrollPosition / scrollTotal) * 100;
+                progressBar.style.width = scrollPercentage + '%';
+            };
+            window.addEventListener('scroll', onScroll);
+            
+            // --- 4. Animated Stat Numbers ---
+            const statObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statItems = entry.target.querySelectorAll('.stat-number');
+                        statItems.forEach(item => {
+                            const target = +item.getAttribute('data-target');
+                            const duration = 1500;
+                            const stepTime = 20;
+                            const steps = duration / stepTime;
+                            const increment = target / steps;
+                            let current = 0;
+                            
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    clearInterval(timer);
+                                    item.innerText = target;
+                                } else {
+                                    item.innerText = Math.floor(current);
+                                }
+                            }, stepTime);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.8 });
+            
+            document.querySelectorAll('.stats-bar').forEach(bar => statObserver.observe(bar));
+        });
+    </script>
+</body>
+</html>
