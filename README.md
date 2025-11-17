@@ -34,9 +34,7 @@ This project is a complete, full-stack Security Orchestration, Automation, and R
 1.  Clone the repository: `git clone https://github.com/chaitanyasreenivas/AI-SOC-Project.git`
 2.  Install dependencies: `pip install -r requirements.txt` (You will need to create this file)
 3.  Set environment variables:
-    ```bash
-    export GROQ_API_KEY="your_groq_key"
-    export ABUSEIPDB_API_KEY="your_abuseipdb_key"
+    ADD API KEY In APP.PY
     ```
 4.  Run the app: `python3 app.py`
 5.  Open `http://127.0.0.1:8080` in your browser.
